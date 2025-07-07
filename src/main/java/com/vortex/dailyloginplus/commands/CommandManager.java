@@ -118,7 +118,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
 
                 // Get last claimed date (weekly)
                 String lastWeeklyClaimed = playerData.getLastClaimDateWeekly() != null ?
-                                    playerPlayer.getLastClaimDateWeekly().format(DateTimeFormatter.ofPattern("MMM dd,yyyy")) :
+                                    playerData.getLastClaimDateWeekly().format(DateTimeFormatter.ofPattern("MMM dd,yyyy")) :
                                     "&7Never";
                 // For weekly, check if claimed *this* cycle (since Monday)
                 LocalDate startOfWeek = today.minusDays(today.getDayOfWeek().getValue() - 1);
@@ -336,4 +336,4 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                             final String finalRewardName = rewardName;
                             new BukkitRunnable() {
                                 @Override
-              
+                
