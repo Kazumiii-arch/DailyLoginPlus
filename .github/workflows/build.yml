@@ -1,0 +1,45 @@
+# The name of your automated workflow.
+name: Build DailyLoginPlus Plugin # Updated workflow name
+
+# Triggers the workflow on push or pull request events for the main branch.
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    # The type of virtual machine to use for building the plugin.
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checks out your repository code so the workflow can access it.
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Sets up the Java environment (JDK 21, as specified in build.gradle.kts).
+      - name: Set up JDK 21 # Updated JDK version
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21' # Changed to 21 to match build.gradle.kts
+          distribution: 'temurin'
+
+      # Step 3: Set up the Gradle program on the virtual machine.
+      # This action installs Gradle for us.
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      # Step 4: Run the build using the 'gradle' command directly.
+      # The 'build' task will automatically run 'shadowJar' because we configured it in build.gradle.kts.
+      - name: Build with Gradle
+        run: gradle build
+
+      # Step 5: Upload the compiled JAR file as a downloadable build artifact.
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          # The name of the downloadable file in the GitHub Actions summary.
+          name: DailyLoginPlus-Plugin # Updated artifact name
+          # The path to the compiled JAR file. The wildcard '*' matches the version number.
+          path: build/libs/DailyLoginPlus-*.jar # Updated JAR path to match shadowJar output
