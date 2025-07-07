@@ -14,6 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -24,8 +25,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-// Optional: PlaceholderAPI for dynamic item lore - Used for general item creation
-// import me.clip.placeholderapi.PlaceholderAPI;
+import me.clip.placeholderapi.PlaceholderAPI; // Import for PlaceholderAPI
 
 public class GUIManager {
 
@@ -54,7 +54,7 @@ public class GUIManager {
             Material.CLOCK,
             configManager.getRawMessage("monthly-calendar.gui-icon.name"),
             configManager.getConfig().getStringList("monthly-calendar.gui-icon.lore"),
-            player // Pass player for PAPI in createGuiItem
+            player 
         );
         gui.setItem(10, monthlyIcon);
 
@@ -171,7 +171,7 @@ public class GUIManager {
             configManager.getRawMessage("gui-item-server-time")
                 .replace("%server_time%", LocalDateTime.now(serverTimeZone).format(DateTimeFormatter.ofPattern("HH:mm:ss"))),
             null,
-            player // Pass player for PAPI
+            player 
         );
         gui.setItem(gui.getSize() - 1, clockItem); // Last slot
 
@@ -189,8 +189,8 @@ public class GUIManager {
         LocalDate lastClaimDateWeekly = playerData.getLastClaimDateWeekly();
 
         // Calculate the start of the current week (e.g., Monday of this week)
-        // If Sunday is first day (value 7), DayOfWeek.MONDAY.getValue() is 1
-        // (currentDayOfWeek.getValue() - 1) will be 0 for Monday, 1 for Tuesday, ..., 6 for Sunday
+        // Note: Java's DayOfWeek is MONDAY (1) to SUNDAY (7). 
+        // We want the start of the week. If currentDayOfWeek is MONDAY (1), minus 0 days. If TUESDAY (2), minus 1 day.
         LocalDate startOfWeek = today.minusDays(currentDayOfWeek.getValue() - 1); 
 
         for (int i = 0; i < 7; i++) {
@@ -373,5 +373,6 @@ public class GUIManager {
                     itemName = configManager.getRawMessage("gui-settings.unclaimed-item.name");
                     itemLore.addAll(configManager.getConfig().getStringList("gui-settings.unclaimed-item.lore"));
                     itemLore.add("");
-                    itemLore.add("&aClick to claim your " + tierName + " reward!");
-          
+                    itemLore.add("&aClick to claim your " + tierName + " reward!"); // LINE 376 (approx) if lines above are removed
+                } else {
+         
