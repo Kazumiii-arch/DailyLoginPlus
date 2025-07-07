@@ -1,0 +1,106 @@
+# ----------------------------------------------------- #
+#           DailyLogin+ by Vortex - Messages            #
+#                      Version 1.18                     #
+# ----------------------------------------------------- #
+
+# Plugin prefix for all messages
+prefix: "&e&lDailyLogin+ &8» &r"
+
+# --- General Messages ---
+no-permission: "%prefix%&cYou don't have permission to do that."
+player-only-command: "%prefix%&cThis command can only be run by a player."
+player-not-found: "%prefix%&cPlayer '&e%player_name%&c' not found."
+plugin-reloaded: "%prefix%&aConfiguration reloaded successfully!"
+invalid-command-usage: "%prefix%&cInvalid command usage. &7Usage: %usage%"
+
+# --- Claiming Messages ---
+reward-claimed: "%prefix%&aYou claimed your reward for Day &e%day_number%&a!"
+reward-already-claimed: "%prefix%&cYou've already claimed your reward for today! Come back tomorrow."
+reward-not-available: "%prefix%&cThis reward is not yet available."
+no-available-rewards: "%prefix%&7There are no rewards available for you right now."
+inventory-full-item-drop: "%prefix%&eYour inventory was full! &6%amount% %item_name%&e dropped at your feet."
+reward-vault-missing: "%prefix%&cEconomy reward could not be given. Vault/Economy plugin not found or enabled."
+
+# --- Streak System Messages ---
+streak-updated: "%prefix%&aYour login streak is now &e%current_streak%&a day(s)! Keep it up!"
+streak-broken: "%prefix%&cOh no! Your login streak of &e%last_streak%&c days has been broken."
+streak-saved: "%prefix%&aYour streak was saved!" # Generic message for both grace and saver
+streak-saver-not-available: "%prefix%&cYou don't have a streak to save or lack the required permission/item."
+streak-saver-used-perm: "%prefix%&aYour daily login streak was saved using your permission!"
+streak-saver-used-item: "%prefix%&aYour daily login streak was saved by consuming &e%amount% %item%&a!"
+milestone-achieved: "%prefix%&aCongratulations! You reached a &e%milestone_streak%&a-day login streak!"
+
+# --- Playtime Rewards Messages ---
+playtime-reward-claimed: "%prefix%&aYou claimed your playtime reward for &e%time_threshold%&a minutes!"
+playtime-reward-already-claimed: "%prefix%&cYou've already claimed this playtime reward."
+playtime-not-reached: "%prefix%&cYou need to play for &e%time_remaining%&c more minutes to claim this reward."
+current-session-playtime: "%prefix%&7Current session playtime: &e%current_session_playtime% &7minutes." # Not currently used in command, but available
+
+# --- GUI Messages ---
+gui-item-locked-lore-time: "&7Available in: &e%time_until_available%" # Not currently used, placeholder
+gui-item-current-day-lore: "&a&l<-- TODAY"
+gui-item-server-time: "&7Server Time: &e%server_time%"
+daily-gui-reminder-on-join: "%prefix%&bDon't forget to claim your &eDailyLogin+ &breward via &a/daily&b!"
+
+
+# --- Chat Tips (Broadcast periodically) ---
+chat-tips:
+  enabled: true
+  interval-minutes: 15 # How often to broadcast a random tip
+  messages:
+    - "&b💡 Don't forget to claim your &eDailyLogin+ &breward!"
+    - "&b⏰ It's &e%current_time%&b — have you claimed today's login reward yet?"
+    - "&b🔥 Log in daily to build your &eDailyLogin+ &bstreak for bonus rewards!"
+    - "&b📚 Check out the &e/daily &bmenu for monthly, weekly, and playtime rewards!"
+    - "&b⭐ Top your daily streak on &eDailyLogin+ &bfor exclusive perks!"
+
+# --- Reward Notifications (Titles/Subtitles/Chat messages) ---
+notification-on-claim:
+  enabled: true
+  title: "&aDAILY REWARD CLAIMED!"
+  subtitle: "&7You received your Day &e%day_number% &7reward!"
+  chat-message: "%prefix%&a+ &e%reward_summary%" # e.g., "+ 10 Diamonds, 500 Money"
+
+# --- Command Help Messages ---
+help:
+  daily-header: "%prefix%&a--- DailyLogin+ Commands ---"
+  daily-main: "&e/daily &7- Open the main rewards menu."
+  daily-monthly: "&e/daily monthly &7- Open the monthly calendar."
+  daily-weekly: "&e/daily weekly &7- Open the weekly rewards."
+  daily-playtime: "&e/daily playtime &7- Open playtime rewards."
+  daily-donator: "&e/daily donator &7- Open donator rewards."
+  daily-stats: "&e/dailystats &7- View your login and playtime statistics."
+  daily-footer: "&a-------------------------"
+
+  admin-header: "%prefix%&c--- DailyLogin+ Admin Commands ---"
+  admin-reload: "&e/dailyadmin reload &7- Reload plugin configurations."
+  admin-reset: "&e/dailyadmin reset <player> &7- Reset a player's all DailyLogin+ data."
+  admin-give: "&e/dailyadmin give <player> <monthly|weekly|playtime <minutes>|donator <tier>> &7- Force-give a reward."
+  admin-footer: "&c------------------------------"
+
+# --- Stats Display Messages ---
+stats:
+  header: "%prefix%&b--- Your DailyLogin+ Stats ---"
+  current-streak: "&7Current Login Streak: &e%streak% &7day(s)"
+  highest-streak: "&7Highest Login Streak: &e%highest_streak% &7day(s)"
+  total-playtime: "&7Total Playtime: &e%playtime% &7minutes"
+  monthly-last-claimed: "&7Last Monthly Claim: &e%date%"
+  monthly-claimed-today: "&7Claimed Monthly Today: &e%status%"
+  weekly-last-claimed: "&7Last Weekly Claim: &e%date%"
+  weekly-claimed-this-cycle: "&7Claimed Weekly This Cycle: &e%status%"
+  playtime-milestones: "&7Playtime Milestones Claimed: %milestones%"
+  donator-claims: "&7Donator Rewards Status: %donator_status%"
+  footer: "&b---------------------------"
+
+# --- Admin Command Messages ---
+player-data-reset: "%prefix%&aPlayer &e%target_player%&a's MonthlyLogin+ data has been reset." # Old message, now superseded by admin-reset-confirm
+admin-reset-confirm: "%prefix%&aDailyLogin+ data for &e%target_player%&a has been completely reset."
+admin-give-success: "%prefix%&aReward &e%reward_name%&a was force-given to &e%target_player%&a."
+admin-give-no-rewards-configured: "%prefix%&cNo rewards configured for &e%reward_type%&c."
+admin-give-invalid-tier: "%prefix%&cInvalid donator tier: &e%tier_name%&c."
+
+# --- Reward Error Messages ---
+unknown-reward-type: "%prefix%&cAn unknown reward type was encountered. Please notify staff."
+reward-parse-error: "%prefix%&cFailed to parse reward data for '&e%reward%&c'. Please notify staff."
+reward-invalid-value: "%prefix%&cInvalid value in reward '&e%reward%&c'. Please notify staff."
+reward-general-error: "%prefix%&cAn unexpected error occurred while giving reward '&e%reward%&c'. Please notify staff."
