@@ -157,7 +157,7 @@ public class GUIManager {
                 dayItem.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.DURABILITY, 1); // Add a fake enchantment for glow
                 ItemMeta meta = dayItem.getItemMeta();
                 if (meta != null) {
-                    meta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS); // Hide enchantment name
+                    meta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
                     dayItem.setItemMeta(meta);
                 }
             }
@@ -373,6 +373,6 @@ public class GUIManager {
                     itemName = configManager.getRawMessage("gui-settings.unclaimed-item.name");
                     itemLore.addAll(configManager.getConfig().getStringList("gui-settings.unclaimed-item.lore"));
                     itemLore.add("");
-                    itemLore.add("&aClick to claim your " + tierName + " reward!"); // LINE 376 (approx) if lines above are removed
+                    itemLore.add("&aClick to claim your " + tierName + " reward!");
                 } else {
-         
+                    itemMaterial = Material.valueOf(configManager.getConfig().getS
