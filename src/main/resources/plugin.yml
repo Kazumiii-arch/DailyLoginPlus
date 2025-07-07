@@ -1,0 +1,45 @@
+name: DailyLoginPlus
+version: 1.18
+main: com.vortex.dailyloginplus.DailyLoginPlus
+api-version: 1.17 # Recommended minimum API version (for Java 17 support, modern Bukkit APIs)
+authors: [Vortex]
+description: Daily login and playtime rewards for your server.
+softdepend: [Vault, PlaceholderAPI] # Add PlaceholderAPI as a soft-dependency
+commands:
+  daily:
+    description: Access daily login rewards.
+    usage: /<command>
+    permission: dailyloginplus.command
+  dailystats:
+    description: View your daily login statistics.
+    usage: /<command>
+    permission: dailyloginplus.command
+  dailyadmin:
+    description: Admin commands for DailyLoginPlus.
+    usage: /<command>
+    permission: dailyloginplus.admin.*
+permissions:
+  dailyloginplus.command:
+    description: Allows players to use /daily and /dailystats.
+    default: true
+  dailyloginplus.donator:
+    description: Allows players to access the donator rewards section.
+    default: false # Set to true if all players can see, but specific tiers claim
+  dailyloginplus.donator.<tier>: # Example: dailyloginplus.donator.VIP
+    description: Allows players to claim specific donator tier rewards.
+    default: op # Set this to false for specific rank permissions via LuckPerms etc.
+  dailyloginplus.streaksavior:
+    description: Allows players to use the streak saver by permission.
+    default: op
+  dailyloginplus.admin.*:
+    description: Grants access to all DailyLoginPlus admin commands.
+    default: op
+  dailyloginplus.admin.reload:
+    description: Allows reloading plugin configuration.
+    default: op
+  dailyloginplus.admin.reset:
+    description: Allows resetting player data.
+    default: op
+  dailyloginplus.admin.give:
+    description: Allows force-giving rewards to players.
+    default: op
